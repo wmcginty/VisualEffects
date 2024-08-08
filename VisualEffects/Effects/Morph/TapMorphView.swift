@@ -14,27 +14,27 @@ struct TapMorphView: View {
 
     // MARK: - View
     var body: some View {
-        GeometryReader { proxy in
-            VStack {
-                MorphingSymbolView(symbol: activePage.symbolName,
-                                   config: .init(font: .system(size: 150, weight: .bold),
-                                                 frame: .init(width: 250, height: 200),
-                                                 radius: 40,
-                                                 foregroundColor: .white,
-                                                 keyframeDuration: 0.3, 
-                                                 keyframeAnimation: .bouncy))
-                .onTapGesture {
-                    activePage = activePage.next
-                }
+        VStack {
+            MorphingSymbolView(symbol: activePage.symbolName,
+                               config: .init(font: .system(size: 150, weight: .bold),
+                                             frame: .init(width: 250, height: 200),
+                                             radius: 40,
+                                             foregroundColor: .white,
+                                             keyframeDuration: 0.3,
+                                             keyframeAnimation: .bouncy))
+            .onTapGesture {
+                activePage = activePage.next
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .background(.black)
         .navigationTitle("Morph")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    TapMorphView()
+    NavigationStack {
+        TapMorphView()
+    }
 }

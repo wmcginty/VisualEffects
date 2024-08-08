@@ -22,9 +22,8 @@ struct HueRotationView: View {
                     
                     GeometryReader { geometry in
                         Text(char)
-                            .font(.largeTitle)
                             .foregroundStyle(.white)
-                            .frame(width: geometry.size.width * 0.75, height: 60)
+                            .frame(width: geometry.size.width * 0.75, height: 40)
                             .background((isMe ? Color.purple : .gray).gradient, in: .capsule)
                             .frame(width: geometry.size.width, alignment: isMe ? .leading : .trailing)
                             .visualEffect { content, proxy in
@@ -33,7 +32,7 @@ struct HueRotationView: View {
                                     .hueRotation(.degrees(degrees))
                             }
                     }
-                    .frame(height: 60)
+                    .frame(height: 40)
                 }
             }
             .padding()

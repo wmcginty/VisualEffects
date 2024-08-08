@@ -26,7 +26,6 @@ struct ScrollEffectView: View {
                                 effect
                                     .offset(y: offset(for: effect, in: proxy))
                                     .scaleEffect(x: scale(for: effect, in: proxy), anchor: .top)
-                                    .opacity(1 - opacity(for: effect, in: proxy))
                             }
                             .shadow(radius: 2)
                     }
@@ -50,10 +49,6 @@ struct ScrollEffectView: View {
     // MARK: - Helper
     nonisolated func offset(for effect: EmptyVisualEffect, in proxy: GeometryProxy) -> CGFloat {
         return -min(0, proxy.frame(in: .scrollView).minY)
-    }
-
-    nonisolated func opacity(for effect: EmptyVisualEffect, in proxy: GeometryProxy) -> CGFloat {
-        return min(0.2, offset(for: effect, in: proxy) / proxy.frame(in: .scrollView).height * 0.5)
     }
 
     nonisolated func scale(for effect: EmptyVisualEffect, in proxy: GeometryProxy) -> CGFloat {

@@ -83,7 +83,6 @@ struct ScrollMorphView: View {
                             dismiss()
                         }
                     }
-                    .disabled(currentPage == pages.last)
                     .foregroundStyle(.white)
                     .padding(.vertical, 100)
                     .padding(.trailing, 30)
