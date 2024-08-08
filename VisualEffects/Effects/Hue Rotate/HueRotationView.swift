@@ -16,27 +16,37 @@ struct HueRotationView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(list, id: \.self) { char in
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(.blue.gradient)
-                        .frame(height: 100)
-                        .overlay {
-                            Text(char)
-                                .font(.largeTitle)
-                                .foregroundStyle(.white)
-                        }
-                        .visualEffect { content, proxy in
-                            content
-                                .hueRotation(.degrees(proxy.frame(in: .global).origin.y) / 10)
-                        }
+                ForEach(list.indices, id: \.self) { idx in
+                    let char = list[idx]
+                    let isMe = idx % 3 == 0 || idx % 5 == 0
+                    
+                    GeometryReader { geometry in
+                        Text(char)
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                            .frame(width: geometry.size.width * 0.75, height: 60)
+                            .background((isMe ? Color.purple : .gray).gradient, in: .capsule)
+                            .frame(width: geometry.size.width, alignment: isMe ? .leading : .trailing)
+                            .visualEffect { content, proxy in
+                                let degrees = isMe ? -proxy.frame(in: .global).origin.y / 10 : 0
+                                return content
+                                    .hueRotation(.degrees(degrees))
+                            }
+                    }
+                    .frame(height: 60)
                 }
             }
             .padding()
+            .frame(maxWidth: .infinity)
         }
         .navigationTitle("Hue Rotate")
     }
 }
 
 #Preview {
-    HueRotationView()
+    NavigationStack {
+        HueRotationView()
+    }
 }
+
+
