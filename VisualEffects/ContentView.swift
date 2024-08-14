@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
+                NavigationLink("Animating Border") { BorderedCardView() }
                 NavigationLink("Apple Music Chips") { AppleMusicChipsView() }
                 NavigationLink("Hue Rotate") { HueRotationView() }
                 NavigationLink("Morph (Scroll)") { ScrollMorphView() }

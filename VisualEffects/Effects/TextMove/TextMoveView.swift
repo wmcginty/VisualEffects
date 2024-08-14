@@ -22,6 +22,7 @@ struct TextMoveView: View {
     // MARK: - View
     var body: some View {
         Color.clear
+            .contentShape(.rect)
             .overlay(alignment: .center) {
                 Text("SwiftUI is ")
                     .alignmentGuide(HorizontalAlignment.center) { d in d[.trailing] }
@@ -36,6 +37,7 @@ struct TextMoveView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .clipped()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onTapGesture {
                 if let index = words.firstIndex(of: currentWord),
                    let nextIndex = words.index(index, offsetBy: 1, limitedBy: words.endIndex - 1) {
